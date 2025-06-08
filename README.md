@@ -1,13 +1,11 @@
-# A simple flask web app that displays "Hello DevOps!"
+# Simple Flask Web App Deployed on Docker
 
-## This was written python and deployed to a container using docker
+###### This simple web app will display "Hello DevOps"
+###### And it is deployed on Docker locally. Make sure Docker is installed and build the image 
 
-### Clone the repo, make sure docker is installed locally
+## Docker Image
 
-#### build the docker image using 'docker build -t webapp:1.0' on the terminal
+`docker pull omiete01/webapp`
+`docker run -d -p 5000:5000 omiete01/webapp`
 
-##### run the container using the command 'docker run -d -p 5000:5000 webapp:1.0'
-
-###### go to a url on your browser and type localhost:5000
-
-###### this is a project by Yamlops on Slack
+###### Go to a URL on your browser and type localhost:5000. This should display "Hello DevOps"
