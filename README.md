@@ -1,13 +1,13 @@
 # 🚀 Simple Flask Web App with Docker and GitHub Actions
 
-###### This is a simple Flask web application that demonstrates the basics of building, containerizing, and automating the deployment of a Python web app using Docker and GitHub Actions.
+This is a simple Flask web application that demonstrates the basics of building, containerizing, and automating the deployment of a Python web app using Docker and GitHub Actions.
 
 ## 🧩 Features
 
-###### [x] A basic Flask route that returns "Hello DevOps!"
-###### [x] Containerized using Docker
-###### [x] Version-controlled with Git and hosted on GitHub
-###### [x] Automated CI/CD pipeline using GitHub Actions (builds and pushes Docker image to Docker Hub)
+- A basic Flask route that returns "Hello DevOps!"
+- Containerized using Docker
+- Version-controlled with Git and hosted on GitHub
+- Automated CI/CD pipeline using GitHub Actions (builds and pushes Docker image to Docker Hub)
 
 ## 🛠️ Getting Started
 
@@ -20,18 +20,18 @@ cd webapp
 
 ### 2. Run the Application Locally
 
-###### If you want to run the app without Docker:
+If you want to run the app without Docker:
 
 ```bash
 pip install -r requirements.txt
 python webapp.py
 ```
 
-###### Visit `http://127.0.0.1:5000` in your browser.
+Visit `http://127.0.0.1:5000` in your browser.
 
 ### 3. Run with Docker
 
-#### Build and run the Docker container:
+Build and run the Docker container:
 
 ```bash
 docker build -t webapp:1.0 .
@@ -62,7 +62,7 @@ Visit `http://127.0.0.1:5000` in your browser.
 1. The Flask app runs on port 5000.
 2. The Dockerfile defines how to build the app into a container.
 3. The `.dockerignore` file ensures unnecessary files are not included in the Docker image.
-4. The GitHub Actions workflow automatically builds the Docker image and pushes it to Docker Hub when changes are pushed to the `main` branch.
+4. The GitHub Actions workflow automatically builds the Docker image and pushes it to Docker Hub when changes are pushed to the `master` branch.
 
 ## 📦 To Use with Docker Hub
 
@@ -74,10 +74,10 @@ To use this project with Docker Hub:
 
 ## 📝 Author
 
-###### Esther Fyneface 
-###### https://github.com/omiete01
-###### estheromiete01@gmail.com
+Esther Fyneface 
+https://github.com/omiete01
+estheromiete01@gmail.com
 
 ## 📄 License
 
-###### MIT License
+MIT License
