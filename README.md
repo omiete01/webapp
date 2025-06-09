@@ -4,7 +4,7 @@ This is a simple Flask web application that demonstrates the basics of building,
 
 ## 🧩 Features
 
-- A basic Flask route that returns "Hello DevOps!"
+- A basic Flask route that returns "Hello DevOps!!!"
 - Containerized using Docker
 - Version-controlled with Git and hosted on GitHub
 - Automated CI/CD pipeline using GitHub Actions (builds and pushes Docker image to Docker Hub)
@@ -35,7 +35,7 @@ Build and run the Docker container:
 
 ```bash
 docker build -t webapp:1.0 .
-docker run -p 5000:5000 webapp:1.0
+docker run -d -p 5000:5000 webapp:1.0
 ```
 
 Visit `http://127.0.0.1:5000` in your browser.
@@ -75,7 +75,7 @@ To use this project with Docker Hub:
 ## 📝 Author
 
 Esther Fyneface 
-https://github.com/omiete01
+https://github.com/omiete01 
 estheromiete01@gmail.com
 
 ## 📄 License
