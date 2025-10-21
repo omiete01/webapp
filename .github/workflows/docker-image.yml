@@ -11,18 +11,31 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Check out the repo
-      uses: actions/checkout@v4
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-    - name: Login to dockerhub
-      uses: docker/login-action@v3.1.0
-      with:
-       username: ${{ secrets.DOCKERHUB_NAME }}
-       password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Build and push to dockerhub
-      uses: docker/build-push-action@v5
-      with:
-       context:
-       push: true
-       tags: omiete01/githubaction:latest
+    # steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Login to dockerhub
+        uses: docker/login-action@v3.1.0
+        with:
+          username: ${{ secrets.DOCKERHUB_NAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push to dockerhub
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: omiete01/githubaction:latest
