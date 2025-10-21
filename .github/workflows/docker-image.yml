@@ -9,7 +9,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Set up SSH
-        shell: pwsh
+        shell: powershell
         run: |
           $sshDir = "$HOME\.ssh"
           if (!(Test-Path -Path $sshDir)) {
