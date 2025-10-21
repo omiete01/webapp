@@ -3,27 +3,28 @@ name: Build and push Docker image to dockerhub
 on:
   push:
     branches: [ "master" ]
-    
+
 jobs:
-
   build:
-
     runs-on: self-hosted
-
     steps:
       - name: Set up SSH
+        shell: pwsh
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          $sshDir = "$HOME\.ssh"
+          if (!(Test-Path -Path $sshDir)) {
+            New-Item -ItemType Directory -Path $sshDir | Out-Null
+          }
+          Set-Content -Path "$sshDir\id_ed25519" -Value "${{ secrets.SSH_PRIVATE_KEY }}"
+          icacls "$sshDir\id_ed25519" /inheritance:r
+          icacls "$sshDir\id_ed25519" /grant:r "$($env:USERNAME):(R)"
+          ssh-keyscan github.com | Out-File -Append -FilePath "$sshDir\known_hosts"
 
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    # steps:
       - name: Check out the repo
         uses: actions/checkout@v4
 
