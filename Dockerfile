@@ -1,18 +1,27 @@
+# Use a Python-specific base image
 FROM python:3.11-alpine
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
-
+# Set working directory
 WORKDIR /app
 
-RUN pip install --upgrade pip
+# Install dependencies
+RUN apk update && apk add --no-cache \
+    python3-dev \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
+    && python3 -m venv /venv \
+    && /venv/bin/pip install --upgrade pip
 
-COPY requirements.txt /app/
+# Copy application files
+COPY . .
 
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python requirements inside the virtual environment
+RUN /venv/bin/pip install --no-cache-dir -r requirements.txt
 
-COPY . /app/
+# Set environment variables for the virtual environment
+ENV PATH="/venv/bin:$PATH"
 
-EXPOSE 5000
-
-CMD ["python", "webapp.py"]
+# Command to run the application
+CMD ["python3", "webapp.py"]
